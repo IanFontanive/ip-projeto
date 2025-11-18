@@ -1,0 +1,41 @@
+{% extends "modelo.html" %}
+
+{% block title %}Interação com IA | PetCare{% endblock %}
+
+{% block conteudo %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <h1 class="text-center mb-4">🤖 Tire Suas Dúvidas com a IA (Gemini)</h1>
+            <p class="lead text-center mb-5">Pergunte sobre saúde, comportamento, alimentação ou clique em uma pergunta rápida abaixo.</p>
+            
+            <h3 class="mt-4 mb-3">Perguntas Rápidas:</h3>
+            <div class="list-group mb-5">
+                {% for p in perguntas_pets %}
+                <a href="{{ url_for('gemini', pergunta_rapida=p) }}" class="list-group-item list-group-item-action">
+                    {{ p }}
+                </a>
+                {% endfor %}
+            </div>
+            
+            <h3 class="mt-5 mb-3">Ou Faça Sua Pergunta Livremente:</h3>
+            <form method="POST" action="{{ url_for('gemini') }}" class="p-4 border rounded shadow-sm bg-light mb-5">
+                <div class="mb-3">
+                    <label for="perguntaInput" class="form-label fw-bold">Sua Pergunta:</label>
+                    <textarea class="form-control" id="perguntaInput" name="pergunta" rows="3" required>{% if pergunta %}{{ pergunta }}{% endif %}</textarea>
+                </div>
+                <button type="submit" class="btn btn-warning w-100">Enviar para o Gemini</button>
+            </form>
+
+            <div class="card border-0 shadow-lg mt-5">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">✨ Resposta do Gemini para: "{{ pergunta }}"</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ resposta | safe }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

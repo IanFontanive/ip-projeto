@@ -1,4 +1,35 @@
 {% extends "modelo.html" %}
+
+{% block title %}PetCare | IA Gemini{% endblock %}
+
 {% block conteudo %}
-    <h1>Oiii</h1>
+<style>
+    .hero-section {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('{{ url_for("static", filename="img/capa_pets.jpg") }}') no-repeat center center;
+        background-size: cover;
+        color: white;
+        padding: 150px 0;
+        text-align: center;
+        min-height: 80vh; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .hero-section h1 {
+        font-size: 4rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+    }
+</style>
+
+<header class="hero-section">
+    <div class="container">
+        <h1>Seu Consultor de Pets com Inteligência Artificial</h1>
+        <p class="lead mt-3">
+            O PetCare usa o Gemini para responder instantaneamente a todas as suas dúvidas sobre cuidados, saúde e alimentação de animais de estimação.
+        </p>
+        
+        <a href="{{ url_for('gemini') }}" class="btn btn-warning btn-lg mt-5"> Começar a Conversar com a IA</a>
+    </div>
+</header>
 {% endblock %}
