@@ -9,7 +9,7 @@ load_dotenv()
 app = Flask(__name__)
 
 GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
-
+print(f'{GEMINI_API_KEY}')
 client = None
 if GEMINI_API_KEY:
     try:
