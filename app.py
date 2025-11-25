@@ -3,13 +3,13 @@ from google import genai
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+load_dotenv(override=True)
 
 
 app = Flask(__name__)
 
 GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
-print(f'{GEMINI_API_KEY}')
+
 client = None
 if GEMINI_API_KEY:
     try:
@@ -49,7 +49,7 @@ def gemini():
         
         if client:
             try:
-                system_prompt = "Você é um especialista em cuidados com animais de estimação. Responda a todas as perguntas de forma concisa, útil e amigável. Use listas e negrito para melhorar a leitura. Responda em Português. Forneça respostas de no máximo 30 palavras."
+                system_prompt = "Você é um especialista em cuidados com animais de estimação. Responda a todas as perguntas de forma concisa, útil e amigável. Use listas e negrito para melhorar a leitura. Responda em Português. Forneça respostas de no mínimo 30 palavras e no máximo 120."
                 
                 resultado = client.models.generate_content(
                     model=modelo,
